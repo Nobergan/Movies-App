@@ -1,0 +1,149 @@
+@use "spacing";
+@use "mixins";
+@use "typography";
+@use "layout";
+
+:host {
+  display: block;
+  margin-top: spacing.$spacing-15;
+}
+
+.footer {
+  padding: spacing.$spacing-7 0;
+  color: var(--color-text);
+  border-top: var(--border-footer);
+
+  @include layout.breakpoint(md) {
+    padding: 50px 0 spacing.$spacing-7;
+  }
+
+  @include layout.breakpoint(xl) {
+    padding: 70px 0 spacing.$spacing-7;
+  }
+
+  &__content-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include layout.breakpoint(xl) {
+      margin-bottom: 70px;
+    }
+
+    @include layout.breakpoint(md) {
+      flex-direction: unset;
+      align-items: flex-end;
+      margin-bottom: 85px;
+    }
+  }
+
+  &__logo {
+    width: 114px;
+    margin: 0 auto spacing.$spacing-8;
+    cursor: pointer;
+
+    @include layout.breakpoint(md) {
+      margin: 0;
+    }
+
+    @include layout.breakpoint(xl) {
+      margin: 0 100px 0 spacing.$spacing-8;
+    }
+  }
+
+  &__middle-wrap {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    @include layout.breakpoint(md) {
+      flex-direction: column;
+      margin-bottom: spacing.$spacing-2;
+    }
+
+    @include layout.breakpoint(xl) {
+      margin-bottom: spacing.$spacing-3;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    margin-bottom: spacing.$spacing-8;
+
+    @include layout.breakpoint(md) {
+      margin-bottom: spacing.$spacing-11;
+    }
+
+    &-icon {
+      display: block;
+      width: spacing.$spacing-7;
+      height: spacing.$spacing-7;
+      cursor: pointer;
+    }
+
+    &-link:not(:last-of-type) {
+      margin-right: spacing.$spacing-5;
+    }
+  }
+
+  &__menu {
+    @include typography.font-regular-14;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 340px;
+    margin-bottom: spacing.$spacing-8;
+
+    @include layout.breakpoint(md) {
+      margin-bottom: 0;
+    }
+
+    @include layout.breakpoint(xl) {
+      width: 450px;
+    }
+
+    @media screen and (max-width: 321px) {
+      width: 288px;
+    }
+
+    &-item {
+      cursor: pointer;
+
+      &_active {
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: var(--gradient-menu-item-active);
+        }
+      }
+
+      &_disabled {
+        color: var(--menu-item-disabled);
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__button {
+    width: 150px;
+    margin: 0 auto spacing.$spacing-10;
+
+    @include layout.breakpoint(md) {
+      width: unset;
+      margin: unset;
+    }
+  }
+
+  &__rights {
+    @include typography.font-regular-12;
+    text-align: center;
+  }
+}

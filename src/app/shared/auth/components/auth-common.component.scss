@@ -1,0 +1,148 @@
+@use "spacing";
+@use "borders";
+@use "typography";
+
+.auth {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: var(--color-auth-bg);
+  backdrop-filter: blur(50px);
+  z-index: 1000;
+
+  &__form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: spacing.$spacing-11 spacing.$spacing-14;
+    text-align: center;
+    background: var(--color-form-bg);
+    border-radius: borders.$border-radius-10;
+
+    &-icon-close {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      transform: translate(50%, -50%);
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    &-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-email {
+      margin-bottom: spacing.$spacing-8;
+
+      &_forgot {
+        margin-bottom: 0;
+      }
+    }
+
+    &-title {
+      @include typography.font-family-bold;
+      @include typography.font-bold-24;
+      margin-bottom: spacing.$spacing-8;
+      color: var(--color-form-title);
+    }
+
+    &-input {
+      @include typography.font-regular-14;
+      padding: spacing.$spacing-5;
+
+      &:first-of-type {
+        margin-bottom: spacing.$spacing-8;
+      }
+    }
+
+    &-btn {
+      margin: spacing.$spacing-12 0 spacing.$spacing-10;
+
+      &_forgot {
+        margin: 34px 0 20px;
+      }
+    }
+
+    &-account,
+    &-login,
+    &-forgot {
+      @include typography.font-regular-14;
+      margin-bottom: spacing.$spacing-10;
+      color: var(--color-auth-account-text);
+
+      &-link {
+        margin-left: spacing.$spacing-1;
+        color: var(--color-auth-account-link-text);
+        cursor: pointer;
+      }
+
+      &-wrap {
+        color: var(--color-auth-forgot-text);
+      }
+    }
+
+    &-gap {
+      @include typography.font-regular-14;
+      position: relative;
+      margin-bottom: spacing.$spacing-8;
+      color: var(--color-auth-gap-text);
+
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 24%;
+        transform: translate(-50%, -50%);
+        content: "";
+        width: 124px;
+        height: 1px;
+        background: var(--color-auth-gap-line);
+      }
+
+      &:after {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-50%, -50%);
+        content: "";
+        width: 124px;
+        height: 1px;
+        background: var(--color-auth-gap-line);
+      }
+    }
+
+    &-btn-google {
+      margin-bottom: spacing.$spacing-8;
+
+      &[disabled] {
+        color: var(--color-button-secondary-disabled-txt);
+        border: 1px solid #5a5a5b;
+      }
+
+      & span {
+        margin-left: spacing.$spacing-4;
+      }
+
+      &-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &-policy,
+    &-register {
+      @include typography.font-regular-14;
+
+      color: var(--color-auth-policy-text);
+
+      &-link {
+        color: var(--color-auth-policy-link-text);
+        cursor: pointer;
+      }
+    }
+  }
+}

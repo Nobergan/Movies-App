@@ -1,0 +1,79 @@
+@use "spacing";
+@use "typography";
+@use "borders";
+
+:host {
+  display: block;
+  padding: spacing.$spacing-15 0;
+}
+
+.top-films {
+  text-align: center;
+  color: var(--color-text);
+
+  &__title {
+    color: var(--color-title-text);
+    margin-bottom: spacing.$spacing-17;
+
+    &-accent {
+      @include typography.font-bold-54;
+
+      text-transform: uppercase;
+      color: var(--color-accent-text);
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+
+    &-left {
+      @include typography.font-regular-16;
+      width: 32%;
+      margin-right: spacing.$spacing-7;
+      padding: 50px 0;
+      text-align: start;
+    }
+
+    &-title {
+      @include typography.font-bold-24;
+      margin-right: spacing.$spacing-10;
+
+      &-wrap {
+        display: flex;
+        margin-bottom: spacing.$spacing-8;
+      }
+    }
+
+    &-rating {
+      @include typography.font-bold-24;
+    }
+
+    &-genres {
+      margin-bottom: spacing.$spacing-5;
+    }
+
+    &-vote {
+      max-width: 300px;
+      margin-bottom: spacing.$spacing-8;
+
+      & span {
+        color: var(--color-accent-text);
+      }
+    }
+
+    &-btn {
+      width: 180px;
+    }
+
+    &-right {
+      position: relative;
+      width: 600px;
+      height: 322px;
+    }
+
+    &-img {
+      border-radius: borders.$border-radius-10;
+    }
+  }
+}

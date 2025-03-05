@@ -1,0 +1,156 @@
+@let vmValue = vm();
+@let details = vm().details;
+
+<ng-container *uiSpinner="vmValue.isLoading">
+  @if (details) {
+    <div class="film-details">
+      @if (details.filmImdbId) {
+        <mm-film-player [imdbId]="details.filmImdbId" [title]="details.title" [poster]="details.playerPoster"></mm-film-player>
+      }
+      <div class="container">
+        <div class="film-details__wrapper">
+          <mm-breadcrumbs [title]="details.title || details.name" [mediaType]="mediaType"></mm-breadcrumbs>
+          <div class="film-details__wrapper">
+            @if (vmValue.isLoggedIn) {
+              <mm-film-to-favourite
+                class="film-details__favourite-icon"
+                [isFilmInFavourite]="details.filmId | isInArray: vmValue.favouriteFilmsIds"
+                (clickedFavouriteButton)="toggleFavouriteFilm(details)"
+              ></mm-film-to-favourite>
+            } @else {
+              <ui-tooltip [tooltip]="detailsText.tooltipFavouritesText" [position]="'left'">
+                <mm-film-to-favourite class="film-details__favourite-icon"></mm-film-to-favourite>
+              </ui-tooltip>
+            }
+            <mm-film-votes
+              class="film-details__likes"
+              [id]="details.filmId"
+              [likes]="vmValue.likes"
+              [dislikes]="vmValue.dislikes"
+              [isLiked]="vmValue.isLiked"
+              [isDisliked]="vmValue.isDisliked"
+              (clickedAddVotes)="handleAddVotes($event)"
+            ></mm-film-votes>
+          </div>
+        </div>
+        <div class="film-details__title">
+          {{ details.title || details.name }}
+          <span class="film-details__title-year">{{ details.releaseDate || details.firstAirDate | date: "yyyy" }}</span>
+        </div>
+        <mat-tab-group dynamicHeight animationDuration="1500ms" class="film-details__tabs" (selectedIndexChange)="tabChanged($event)">
+          <mat-tab label="{{ detailsText.tabs.description }}">
+            <div class="film-details__wrap">
+              <div class="film-details__description-wrap">
+                <div class="film-details__genres">
+                  <mm-genres [genres]="details.genres"></mm-genres>
+                </div>
+                @if (details.overview) {
+                  <div class="film-details__description" [mmDescription]="details.overview" #description="mmInteractiveContent"></div>
+                  @if (description.isVisibleMoreButton) {
+                    <button
+                      mmButton
+                      mmType="simple"
+                      size="xxs"
+                      class="film-details__description-more"
+                      (click)="description.toggleDescription()"
+                    >
+                      <span>
+                        {{ description.isExpanded ? detailsText.description.collapse : detailsText.description.more }}
+                      </span>
+                    </button>
+                  }
+                }
+              </div>
+
+              <ul class="film-details__info">
+                <li class="film-details__info-item">
+                  <h2 class="film-details__info-subtitle">
+                    {{ detailsText.description.rate }}
+                  </h2>
+                  <div class="film-details__info-text">
+                    {{ details.voteAverage | number: "1.1-1" }}
+                  </div>
+                </li>
+                <li class="film-details__info-item">
+                  <h2 class="film-details__info-subtitle">
+                    {{ detailsText.description.country }}
+                  </h2>
+                  @for (country of details.productionCountries; track country; let last = $last) {
+                    <div class="film-details__info-text">{{ country.name | titlecase }}{{ last ? "" : ", " }}</div>
+                  }
+                </li>
+                <li class="film-details__info-item">
+                  <h2 class="film-details__info-subtitle">
+                    {{ details.budget ? detailsText.description.budget : detailsText.description.episodes }}
+                  </h2>
+                  <div class="film-details__info-text">
+                    {{ details.budget ? details.budget + detailsText.description.budgetCurrency : details.numberOfEpisodes }}
+                  </div>
+                </li>
+                <li class="film-details__info-item">
+                  <h2 class="film-details__info-subtitle">
+                    {{ mediaType === filmsType.Movie ? detailsText.description.runtime : detailsText.description.seasons }}
+                  </h2>
+                  <div class="film-details__info-text">
+                    {{ details.filmRuntime ? details.filmRuntime : details.numberOfSeasons }}
+                    {{ mediaType === filmsType.Movie ? detailsText.description.runtimeSize : "" }}
+                  </div>
+                </li>
+                <li class="film-details__info-item">
+                  <h2 class="film-details__info-subtitle">
+                    {{ detailsText.description.studio }}
+                  </h2>
+                  @for (company of details.productionCompanies; track company; let last = $last) {
+                    <div class="film-details__info-text">{{ company.name | titlecase }}{{ last ? "" : ", " }}</div>
+                  }
+                </li>
+                <li class="film-details__info-item">
+                  <h2 class="film-details__info-subtitle">
+                    {{ detailsText.description.status }}
+                  </h2>
+                  <div class="film-details__info-text">
+                    {{ details.status }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </mat-tab>
+          <mat-tab label="{{ detailsText.tabs.actors }}" class="film-details__actors">
+            @if (showActors) {
+              <mm-film-actors [id]="details.filmId" [mediaType]="mediaType"></mm-film-actors>
+            }
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              {{ detailsText.tabs.comments }}
+              <span class="film-details__comments-count">
+                {{ numberOfComments() }}
+              </span>
+            </ng-template>
+            @if (showComments) {
+              <mm-film-comments
+                [id]="details.filmId"
+                [comments]="vmValue?.comments"
+                [isLoading]="vmValue.isLoadingComments"
+                [isLoggedIn]="vmValue.isLoggedIn"
+                [isLoginPopupOpen]="vmValue.authPopupOpen"
+                [isRegisterPopupOpen]="vmValue.authPopupOpen"
+                (openLoginClicked)="openAuthPopup(authPopupType.LOGIN)"
+                (openRegisterClicked)="openAuthPopup(authPopupType.REGISTER)"
+              ></mm-film-comments>
+            }
+          </mat-tab>
+        </mat-tab-group>
+        <mm-films-list
+          class="gradient-border gradient-border_top"
+          [films]="vmValue.filmsSimilar"
+          [mediaType]="mediaType"
+          [favouriteFilmsIds]="vmValue.favouriteFilmsIds"
+          [isDetails]="true"
+          [isLoggedIn]="vmValue.isLoggedIn"
+          (clickedFavouriteButton)="toggleFavouriteFilm($event)"
+        ></mm-films-list>
+      </div>
+    </div>
+  }
+</ng-container>

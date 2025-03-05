@@ -1,0 +1,20 @@
+@use "spacing";
+@use "typography";
+
+.mm-media {
+  &__container {
+    padding-top: spacing.$spacing-15;
+  }
+
+  &__title {
+    margin-bottom: spacing.$spacing-12;
+    text-align: center;
+  }
+
+  &__content {
+    @include typography.font-regular-16;
+
+    padding-top: spacing.$spacing-15;
+    color: var(--color-text);
+  }
+}

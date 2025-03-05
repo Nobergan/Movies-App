@@ -1,0 +1,122 @@
+@use "typography";
+@use "spacing";
+@use "layout";
+
+@mixin mm-button-xxs {
+  padding: 0;
+  @include typography.font-bold-14;
+}
+
+@mixin mm-button-s {
+  padding: 12px 24px;
+  @include typography.font-regular-14;
+}
+
+@mixin mm-button-m {
+  padding: 15px 46px;
+  @include typography.font-regular-14;
+}
+
+@mixin mm-button-l {
+  padding: 20px 24px;
+  @include typography.font-regular-16;
+}
+
+.mm-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &_xxs {
+    @include mm-button-xxs;
+  }
+
+  &_s {
+    @include mm-button-s;
+  }
+
+  &_m {
+    @include mm-button-m;
+  }
+
+  &_l {
+    @include mm-button-l;
+  }
+
+  &_simple {
+    color: var(--color-button-primary-txt);
+    background: none;
+
+    .mm-icon {
+      & + span {
+        margin-left: spacing.$spacing-2;
+      }
+    }
+  }
+
+  &_primary {
+    color: var(--color-button-primary-txt);
+    background: var(--color-button-primary-bg);
+    border-radius: 16px;
+  }
+
+  &_secondary {
+    color: var(--color-button-secondary-txt);
+    background: var(--color-button-secondary-bg);
+    border-radius: 9px;
+    border: 1px solid var(--color-button-secondary-border);
+
+    &.mm-button_xl {
+      @include typography.font-regular-12;
+
+      padding: 8px 16px;
+
+      @include layout.breakpoint(xl) {
+        @include typography.font-regular-16;
+
+        border-radius: 16px;
+        padding: 14px 50px;
+      }
+    }
+  }
+
+  &_tertiary {
+    color: var(--color-button-tertiary-txt);
+    background: var(--color-button-tertiary-bg);
+    border-radius: 16px;
+    border: 1px solid var(--color-button-tertiary-border);
+  }
+
+  &_quaternary {
+    color: #f80032;
+    background: none;
+
+    .mm-icon {
+      & + span {
+        margin-top: auto;
+        margin-left: spacing.$spacing-2;
+      }
+    }
+  }
+
+  &:disabled,
+  &_disabled {
+    pointer-events: none;
+    background: var(--color-button-primary-disabled-bg);
+  }
+
+  &_full-width {
+    width: 100%;
+  }
+}
+
+.mm-button.mm-button_simple.mm-button-xxs {
+  background: none !important;
+}
+
+.mm-button_simple.film-details__description {
+  &-more {
+    color: #f80032;
+    cursor: pointer;
+  }
+}

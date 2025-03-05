@@ -1,0 +1,26 @@
+@use "spacing";
+
+:host {
+  display: block;
+  padding: spacing.$spacing-15 0;
+  text-align: center;
+}
+
+.film-recommendations {
+  &__title {
+    color: var(--color-title-text);
+    margin-bottom: spacing.$spacing-12;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+    grid-row-gap: spacing.$spacing-11;
+    grid-column-gap: spacing.$spacing-7;
+  }
+
+  &__pagination {
+    margin-top: spacing.$spacing-10;
+    display: block;
+  }
+}

@@ -1,0 +1,14 @@
+@let vm = vm$ | async;
+
+<ng-container *uiSpinner="vm.isLoading">
+  <mm-hero-films [films]="vm.popularFilms" [mediaType]="mediaType()"></mm-hero-films>
+  <div class="mm-media__container container gradient-border">
+    <h2 class="mm-media__title" mmTitle [level]="2">{{ mediaTexts.title | translate }}</h2>
+    <ui-route-tabset [tabs]="mediaTabs" class="mm-media__tabs"></ui-route-tabset>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="container">
+    <mm-top-films class="gradient-border gradient-border_bottom" [films]="vm.topFilms" [mediaType]="mediaType()"></mm-top-films>
+    <div class="mm-media__content" [innerHTML]="pageContent()"></div>
+  </div>
+</ng-container>

@@ -1,0 +1,66 @@
+@if (errorsList().length) {
+  @for (error of errorsList(); track $index; let isFirst = $first) {
+    @if (isFirst || !isSingleError()) {
+      @if (errorDictionary() && errorDictionary()[error]; as errorDescription) {
+        <div class="error">
+          {{ errorDescription }}
+        </div>
+      } @else {
+        <div class="error" [attr.data-testid]="'appValidationMessage'">
+          @switch (error) {
+            @case ("required") {
+              Поле обов'язкове
+            }
+            @case ("whitespacePresented") {
+              Пробіли не допускаються
+            }
+            @case ("minlength") {
+              Потрібно не менше {{ errors()["minlength"]["requiredLength"] }} символів
+            }
+            @case ("maxlength") {
+              Потрібно не більше {{ errors()["maxlength"]["requiredLength"] }} символів
+            }
+            @case ("lowerAndUpperCase") {
+              Символи повинні бути в нижньому і верхньому регістрах
+            }
+            @case ("numberAndLetter") {
+              Потрібна комбінація з чисел і букв
+            }
+            @case ("matchPasswords") {
+              Паролі не співпадають
+            }
+            @case ("dateInvalid") {
+              Не вірна дата
+            }
+            @case ("ageRestricted") {
+              Не дозволений вік
+            }
+            @case ("email") {
+              Невірний формат електронної адреси
+            }
+            @case ("validationError") {
+              {{ errors()["validationError"] }}
+            }
+            @case ("backendError") {
+              {{ errors()["backendError"] }}
+            }
+
+            <!--            @case ('pattern') {-->
+            <!--              {{ 'validationMessages.pattern' | translate }}-->
+            <!--            }-->
+
+            @case ("mask") {
+              Невірний формат
+            }
+            @case ("valueNotSelected") {
+              Потрібно обрати
+            }
+            @case ("pastDate") {
+              Дата не актуальна
+            }
+          }
+        </div>
+      }
+    }
+  }
+}

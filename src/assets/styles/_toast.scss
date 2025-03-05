@@ -1,0 +1,38 @@
+//NGX Toast
+.mm-toast {
+  padding: 25px 16px 25px 56px;
+  font-size: 16px;
+  line-height: 1;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: 82% 44%;
+  background-position-x: -170%;
+  background-position-y: center;
+  border-radius: 12px;
+}
+
+.mm-toast.toast-success {
+  background-color: #050609;
+  border-left: 4px solid green;
+}
+
+.mm-toast.toast-info {
+  background-color: #050609;
+  border-left: 4px solid deepskyblue;
+}
+
+.mm-toast.toast-error {
+  background-image: url('/assets/images/icons/toast-error.svg');
+  background-color: #050609;
+  border-left: 4px solid #f80032;
+}
+
+.mm-toast.toast-warning {
+  width: 286px;
+  padding: 24px 24px 24px 60px;
+  background-size: 83% 32%;
+  line-height: 1.3;
+  background-image: url('/assets/images/icons/toast-warning.svg');
+  background-color: #050609;
+  border-left: 4px solid #f86800;
+}

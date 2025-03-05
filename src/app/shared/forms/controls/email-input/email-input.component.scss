@@ -1,0 +1,22 @@
+@use "typography";
+@use "spacing";
+@use "borders";
+
+.email-input {
+  @include typography.font-regular-14;
+
+  width: 100%;
+  padding: spacing.$spacing-5;
+  color: var(--color-input-text);
+  background: var(--color-input-bg);
+  border-radius: borders.$border-radius-6;
+  border: 1px solid var(--color-input-border);
+
+  &:focus {
+    outline: none;
+  }
+
+  &.ng-invalid.ng-touched {
+    border: 1px solid #f80032;
+  }
+}

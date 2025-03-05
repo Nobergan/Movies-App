@@ -1,0 +1,29 @@
+<div class="films-filters__wrapper">
+  <div class="films-filters__wrapper-select films-filters__wrapper-select_year">
+    <ng-select
+      [items]="years"
+      [(ngModel)]="selectedYear"
+      [placeholder]="'Всі роки'"
+      (change)="changeFilters()"
+      [clearable]="false"
+      class="films-filters__select films-filters__select_years"
+    >
+    </ng-select>
+  </div>
+  <div class="films-filters__wrapper-select">
+    <ng-select
+      [items]="genres()"
+      [(ngModel)]="selectedGenre"
+      [placeholder]="'Жанр'"
+      [bindLabel]="'name'"
+      [bindValue]="'id'"
+      (change)="changeFilters()"
+      [clearable]="false"
+      class="films-filters__select films-filters__select_genres"
+    >
+    </ng-select>
+  </div>
+  @if (isShowFiltersButton()) {
+    <button mmButton mmType="primary" size="s" (click)="clickedResetFilters.emit()">Сброс</button>
+  }
+</div>

@@ -1,0 +1,87 @@
+@mixin font-family-bold {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+}
+
+@mixin font-regular-10 {
+  font-family: 'Gotham-Pro-Regular', sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@mixin font-regular-12 {
+  font-family: 'Gotham-Pro-Regular', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@mixin font-regular-14 {
+  font-family: 'Gotham-Pro-Regular', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@mixin font-regular-16 {
+  font-family: 'Gotham-Pro-Regular', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+@mixin font-regular-54 {
+  font-family: 'Gotham-Pro-Regular', sans-serif;
+  font-size: 54px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+@mixin font-bold-14 {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+@mixin font-bold-16 {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+@mixin font-bold-18 {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+@mixin font-bold-24 {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+@mixin font-bold-32 {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+@mixin font-bold-54 {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+  font-size: 54px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+@mixin font-bold-120 {
+  font-family: 'Gotham-Pro-Bold', sans-serif;
+  font-size: 120px;
+  line-height: 1.2;
+  font-weight: 700;
+}

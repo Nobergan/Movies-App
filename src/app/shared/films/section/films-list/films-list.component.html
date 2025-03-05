@@ -1,0 +1,24 @@
+<ng-container *uiSpinner="isLoading()">
+  @if (isVisibleTitle()) {
+    <h2 class="film-recommendations__title" mmTitle [level]="2">
+      {{ recommendationsContent.title }}
+    </h2>
+  }
+  <div class="film-recommendations__list">
+    @for (
+      film of films().results | paginate: { itemsPerPage: itemsPerPage(), currentPage: currentPage(), totalItems: films().total_pages };
+      track $index
+    ) {
+      <mm-film-card
+        [film]="film"
+        [mediaType]="mediaType()"
+        [favouriteFilmsIds]="favouriteFilmsIds()"
+        [isLoggedIn]="isLoggedIn()"
+        (onAddFavouriteFilm)="clickedFavouriteButton.emit($event)"
+      ></mm-film-card>
+    }
+  </div>
+  @if (films().total_pages > FILMS_DEFAULT_PAGE && !isDetails()) {
+    <mm-pagination class="film-recommendations__pagination" (pageChange)="onPageChange($event)" [maxSize]="6"></mm-pagination>
+  }
+</ng-container>

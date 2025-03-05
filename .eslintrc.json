@@ -1,0 +1,193 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@angular-eslint/recommended"],
+      "rules": {
+        "@ngrx/avoid-cyclic-effects": "error",
+        "@ngrx/prefer-effect-callback-in-block-statement": "off",
+        "@ngrx/use-consistent-global-store-name": ["error", "_store"],
+        "@ngrx/prefer-inline-action-props": "error",
+        "@ngrx/on-function-explicit-return-type": "error",
+        "@ngrx/good-action-hygiene": "error",
+        "@ngrx/no-dispatch-in-effects": "error",
+        "@ngrx/no-effects-in-providers": "error",
+        "@ngrx/prefer-action-creator-in-of-type": "error",
+        "@ngrx/prefer-concat-latest-from": "error",
+        "@ngrx/use-effects-lifecycle-interface": "error",
+        "@ngrx/avoid-combining-selectors": "error",
+        "@ngrx/avoid-dispatching-multiple-actions-sequentially": "error",
+        "@ngrx/avoid-duplicate-actions-in-reducer": "error",
+        "@ngrx/avoid-mapping-selectors": "error",
+        "@ngrx/no-multiple-global-stores": "error",
+        "@ngrx/no-reducer-in-key-names": "error",
+        "@ngrx/prefer-action-creator-in-dispatch": "error",
+        "@ngrx/prefer-action-creator": "error",
+        "@ngrx/prefer-one-generic-in-create-for-feature-selector": "error",
+        "@ngrx/prefer-selector-in-select": "error",
+        "@ngrx/prefix-selectors-with-select": "error",
+        "@ngrx/select-style": ["error", "method"],
+        "@ngrx/no-multiple-actions-in-effects": "off",
+        "@ngrx/no-typed-global-store": "off",
+        "@angular-eslint/use-component-view-encapsulation": "error",
+        "@angular-eslint/directive-class-suffix": "off",
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "no-public"
+          }
+        ],
+        "@typescript-eslint/no-empty-function": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "memberLike",
+            "modifiers": ["private"],
+            "format": ["camelCase"],
+            "leadingUnderscore": "require"
+          },
+          {
+            "selector": "memberLike",
+            "modifiers": ["public"],
+            "format": ["camelCase"],
+            "leadingUnderscore": "forbid"
+          },
+          {
+            "selector": "property",
+            "format": null
+          }
+        ],
+        "brace-style": ["error", "1tbs"],
+        "comma-dangle": ["error", "always-multiline"],
+        "max-classes-per-file": ["error", 2],
+        "no-empty": "error",
+        "no-multiple-empty-lines": "error",
+        "no-underscore-dangle": "off",
+        "max-len": "off",
+        "no-multi-spaces": "error",
+        "object-curly-spacing": ["error", "always"],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              "signature",
+              "public-static-field",
+              "protected-static-field",
+              "private-static-field",
+              "public-decorated-field",
+              "protected-decorated-field",
+              "private-decorated-field",
+              "public-instance-field",
+              "protected-instance-field",
+              "private-instance-field",
+              "constructor",
+              "public-instance-method",
+              "protected-instance-method",
+              "private-instance-method"
+            ]
+          }
+        ],
+        "import/order": [
+          "error",
+          {
+            "pathGroupsExcludedImportTypes": [],
+            "pathGroups": [
+              {
+                "pattern": "@angular/**",
+                "group": "builtin",
+                "position": "after"
+              },
+              {
+                "pattern": "@{environments,core,libs}/**",
+                "group": "internal"
+              }
+            ],
+            "groups": ["builtin", "external", ["internal", "parent", "sibling", "index"]],
+            "newlines-between": "always"
+          }
+        ],
+        "arrow-body-style": "off",
+        "object-shorthand": "error",
+        "no-console": [
+          "error",
+          {
+            "allow": ["warn", "error"]
+          }
+        ],
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ],
+        "newline-before-return": "error",
+        "rxjs/no-unsafe-takeuntil": [
+          "error",
+          {
+            "alias": ["untilDestroyed", "takeUntil"]
+          }
+        ],
+        "rxjs/no-implicit-any-catch": ["off"],
+        "rxjs/finnish": [
+          "error",
+          {
+            "functions": false,
+            "methods": false,
+            "names": {
+              "^(canActivate|canActivateChild|canDeactivate|canLoad|intercept|resolve|validate|_store)$": false
+            },
+            "parameters": true,
+            "properties": true,
+            "strict": true,
+            "types": {
+              "^EventEmitter$": false,
+              "^Subject$": false
+            },
+            "variables": true
+          }
+        ],
+        "rxjs/prefer-observer": ["error"],
+        "rxjs/suffix-subjects": [
+          "error",
+          {
+            "parameters": true,
+            "properties": true,
+            "suffix": "Subject",
+            "types": {
+              "^EventEmitter$": false
+            },
+            "variables": true
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "parser": "@angular-eslint/template-parser",
+      "plugins": ["@angular-eslint/template"],
+      "rules": {
+        "@angular-eslint/template/click-events-have-key-events": "off",
+        "@angular-eslint/template/interactive-supports-focus": "off",
+        "@angular-eslint/template/elements-content": "error",
+        "@angular-eslint/template/conditional-complexity": [
+          "error",
+          {
+            "maxComplexity": 6
+          }
+        ],
+        "@angular-eslint/template/no-call-expression": "error",
+        "@angular-eslint/template/no-distracting-elements": "error",
+        "@angular-eslint/template/no-duplicate-attributes": "error",
+        "@angular-eslint/template/use-track-by-function": "error"
+      }
+    }
+  ]
+}

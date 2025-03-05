@@ -1,0 +1,28 @@
+@let vmValue = vm();
+
+<ng-container *uiSpinner="vmValue.isLoading">
+  <div class="owl-carousel owl-theme owl-loaded film-actors">
+    <owl-carousel-o [options]="actorsOptions" class="carousel film-actors__carousel">
+      @for (actor of vmValue?.actors; let index = $index; track index) {
+        <ng-template carouselSlide class="film-actors__carousel-item">
+          @if (actor.profile_path) {
+            <div class="film-actors__poster-wrap">
+              <img
+                class="film-actors__poster"
+                ngSrc="https://image.tmdb.org/t/p/w500/{{ actor.profile_path }}"
+                alt="img"
+                width="180"
+                height="270"
+              />
+            </div>
+          } @else {
+            <div class="film-actors__poster-wrap">
+              <img class="film-actors__poster" ngSrc="/assets/images/empty-actor.jpeg" alt="img" width="180" height="270" />
+            </div>
+          }
+          <div class="film-actors__name">{{ actor.name }}</div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</ng-container>

@@ -1,0 +1,5 @@
+<mm-icon
+  size="xxl"
+  [iconName]="isInFavouritesPage() ? 'delete-favourite' : isFilmInFavourite() ? 'in-favourite' : 'to-favourite'"
+  (click)="toggleFavouriteFilm()"
+></mm-icon>

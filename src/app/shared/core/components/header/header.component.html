@@ -1,0 +1,107 @@
+@let activeRoute = activeMediaRoute();
+
+<div class="header" scrollBackground>
+  <div class="container">
+    @if (isMobileMenuVisible()) {
+      <ul class="header__menu">
+        <li [routerLinkActiveOptions]="{ exact: true }" class="header__menu-item" routerLinkActive="header__menu-item_active">
+          <a [routerLink]="['/']">{{ headerContent.menuMain }}</a>
+        </li>
+        <li [routerLinkActiveOptions]="{ exact: true }" class="header__menu-item" routerLinkActive="header__menu-item_active">
+          <a [routerLink]="['/movies', activeRoute]">{{ headerContent.menuFilms }}</a>
+        </li>
+        @if (!isXl()) {
+          <li [routerLink]="['/']" class="header__menu-item header__menu-item_logo">
+            <mm-icon class="header__menu-item_logo-icon" size="l" [iconName]="'logo-menu-mobile'"></mm-icon>
+          </li>
+        }
+        <li [routerLinkActiveOptions]="{ exact: true }" class="header__menu-item" routerLinkActive="header__menu-item_active">
+          <a [routerLink]="['/tv', activeRoute]">{{ headerContent.menuSeries }}</a>
+        </li>
+        <li class="header__menu-item" routerLinkActive="header__menu-item_active">
+          @if (!isLoggedIn()) {
+            <ui-tooltip [tooltip]="headerContent.menuFavouritesTooltip">
+              <a [routerLink]="['/favourites']" class="header__menu-item_disabled">{{ headerContent.menuFavourites }}</a>
+            </ui-tooltip>
+          } @else {
+            <a [routerLink]="['/favourites']">{{ headerContent.menuFavourites }}</a>
+          }
+        </li>
+      </ul>
+    }
+    <a [routerLink]="['/']">
+      <img ngSrc="./assets/images/logo.png" alt="MixMovie" height="48" width="111" priority />
+    </a>
+
+    <div class="header__wrapper">
+      @if (isButtonSearchIcon()) {
+        <button mmButton mmType="simple" class="header__btn-search" (click)="toggleSearchBlock()">
+          <mm-icon size="m" [iconName]="isVisibleSearchBlock ? 'close' : 'search'"></mm-icon>
+        </button>
+      }
+      <ul class="header__auth-list">
+        @if (isAnonymous()) {
+          <li class="header__auth-item">
+            <button (click)="openLoginClicked.emit()" class="header__auth-item-login" mmButton mmType="simple" size="xxs">
+              {{ headerContent.login }}
+            </button>
+          </li>
+          <li class="header__auth-item">
+            <button (click)="openRegisterClicked.emit()" class="header__auth-item-register" mmButton mmType="tertiary" size="s">
+              {{ headerContent.register }}
+            </button>
+          </li>
+        }
+        @if (isLoggedIn()) {
+          <li class="header__auth-item">
+            <button (click)="logoutClicked.emit()" class="header__auth-item-login" mmButton mmType="simple" size="xxs">
+              {{ headerContent.logOut }}
+            </button>
+          </li>
+          <li class="header__auth-item">
+            <img ngSrc="/assets/images/header/empty-avatar.png" class="header__auth-item-avatar" height="40" width="40" />
+            @if (currentUser()?.displayName; as displayName) {
+              <p class="header__auth-item-text">
+                {{ displayName }}
+              </p>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+
+    @if (isBlockSearchVisible()) {
+      <div class="header__search">
+        <ui-search-input [placeholder]="'Пошук...'" (inputedSearchFilms)="handleSearchFilms($event)"></ui-search-input>
+        @if (searchTerm?.length > 3) {
+          <div class="header__search-container">
+            <ng-container *uiSpinner="isLoadingSearchFilms()">
+              @if (searchFilms()?.length) {
+                <div class="header__search-list">
+                  @for (film of searchFilms(); track $index) {
+                    <mm-film-card [film]="film" [mediaType]="film.mediaType" [isSimply]="true" (click)="toggleSearchBlock()"></mm-film-card>
+                  }
+                </div>
+              } @else {
+                <ui-not-found [text]="'Фільми не знайдені!'"></ui-not-found>
+              }
+              @if (isSearchButton()) {
+                <button mmButton [fullWidth]="true" class="header__search-btn" (click)="onSearchClick()">Дивитись більше</button>
+              }
+            </ng-container>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+@if (isLoginPopupOpen() === authPopupType.LOGIN) {
+  <mm-login></mm-login>
+}
+@if (isRegisterPopupOpen() === authPopupType.REGISTER) {
+  <mm-register></mm-register>
+}
+@if (isForgotPasswordPopupOpen() === authPopupType.FORGOT_PASSWORD) {
+  <mm-forgot-password></mm-forgot-password>
+}

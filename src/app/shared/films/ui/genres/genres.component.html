@@ -1,0 +1,3 @@
+@for (genre of genres(); track $index; let last = $last) {
+  <span> {{ genre | titlecase }}{{ last ? "" : ", " }} </span>
+}

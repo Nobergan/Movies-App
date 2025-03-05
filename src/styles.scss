@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@ng-select/ng-select/themes/default.theme.css";
+@use "assets/fonts/fonts";
+@use "assets/styles/reset";
+@use "utilities";
+@use "variables";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #050609;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 1236px;
+  padding: 0 16px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gradient-border {
+  position: relative;
+
+  // Both top and bottom lines
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #f80032 50%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  &::before {
+    top: 1px; // top lines
+  }
+
+  &::after {
+    bottom: 1px; // bottom lines
+  }
+
+  // Only top line
+  &_top {
+    &::after {
+      display: none;
+    }
+  }
+
+  // Only bottom line
+  &_bottom {
+    &::before {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="film__likes">
+  <div class="film__likes-wrap">
+    <div class="film__likes-wrap-left" (click)="addLike()">
+      <div class="film__likes-icon">
+        <mm-icon class="film__likes-icon-like" size="m" [iconName]="isLiked() ? 'liked' : 'like'"></mm-icon>
+      </div>
+      <div class="film__likes-count">
+        <span>{{ likes() }}</span>
+      </div>
+    </div>
+    <div class="film__likes-wrap-right" (click)="addDislike()">
+      <div class="film__likes-icon">
+        <mm-icon class="film__likes-icon-like" size="m" [iconName]="isDisliked() ? 'disliked' : 'dislike'"></mm-icon>
+      </div>
+      <div class="film__likes-count">
+        <span>{{ dislikes() }}</span>
+      </div>
+    </div>
+  </div>
+</div>

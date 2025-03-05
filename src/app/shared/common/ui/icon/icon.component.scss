@@ -1,0 +1,32 @@
+@use "spacing";
+
+:host {
+  display: inline-flex;
+}
+
+.mm-icon-svg {
+  &.s {
+    width: spacing.$spacing-3;
+    height: spacing.$spacing-4;
+  }
+  &.m {
+    width: spacing.$spacing-7;
+    height: spacing.$spacing-7;
+  }
+  &.xm {
+    width: 26px;
+    height: 26px;
+  }
+  &.l {
+    width: spacing.$spacing-8;
+    height: spacing.$spacing-8;
+  }
+  &.xl {
+    width: spacing.$spacing-16;
+    height: spacing.$spacing-16;
+  }
+  &.xxl {
+    width: 46px;
+    height: spacing.$spacing-13;
+  }
+}

@@ -1,0 +1,21 @@
+@let vm = vm$ | async;
+
+<mm-film-filters
+  [genres]="vm.genres"
+  class="mm-media__filters"
+  [filters]="currentFilters"
+  [isShowFiltersButton]="vm.isShowFiltersButton"
+  (clickedFilters)="loadFilmsByFilters($event)"
+  (clickedResetFilters)="loadFilmsByFilters()"
+></mm-film-filters>
+<mm-films-list
+  [isLoading]="vm.isLoading"
+  [films]="vm.discoveryFilms"
+  [currentPage]="currentPage"
+  [isVisibleTitle]="false"
+  [isLoggedIn]="vm.isLoggedIn"
+  [mediaType]="this.mediaData().movieType"
+  [favouriteFilmsIds]="vm.favouriteFilmsIds"
+  (clickedPaginationBtn)="loadFilmsByPage($event)"
+  (clickedFavouriteButton)="toggleFavouriteFilm($event, vm.favouriteFilmsIds)"
+></mm-films-list>

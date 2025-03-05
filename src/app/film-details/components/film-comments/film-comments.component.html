@@ -1,0 +1,57 @@
+@let commentsValue = comments();
+
+<div class="film-comments">
+  @if (isLoggedIn()) {
+    <div class="film-comments__wrap">
+      <div class="film-comments__avatar">C</div>
+      <form class="film-comments__form" [formGroup]="form" (ngSubmit)="addComment()">
+        <fieldset>
+          <textarea class="film-comments__form-text" placeholder="Напишіть коментар..." rows="3" formControlName="comment"></textarea>
+          <button class="film-comments__form-btn" mmButton mmType="primary" size="s" [disabled]="isButtonDisabled">
+            {{ commentsText.addComment }}
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  } @else {
+    <div class="film-comments__auth">
+      {{ commentsText.authFirst }}
+      <span (click)="openLoginClicked.emit()">{{ commentsText.authSecond }}</span>
+      {{ commentsText.authThird }}
+      <span (click)="openRegisterClicked.emit()">{{ commentsText.authFourth }}</span>
+    </div>
+  }
+
+  <ng-container *uiSpinner="isLoading()">
+    @if (commentsValue) {
+      <div class="film-comments__items-wrap">
+        @for (comment of (commentsValue | reverse).slice(0, displayedCommentsCount); track comment.id) {
+          <div class="film-comments__item">
+            <div class="film-comments__item-avatar">M</div>
+            <div class="film-comments__item-wrap">
+              <div class="film-comments__item-top">
+                <span class="film-comments__item-name">M.G.</span>
+                <span class="film-comments__item-date">{{ comment.date | date: "dd.MM.yyyy" }}</span>
+              </div>
+              <p class="film-comments__item-text">
+                {{ comment.comment }}
+              </p>
+            </div>
+          </div>
+        }
+      </div>
+      @if (commentsValue.length > displayedCommentsCount) {
+        <button mmButton mmType="simple" size="xxs" class="film-comments__items-btn" (click)="showMoreComments()">
+          {{ commentsText.moreComments }}
+        </button>
+      }
+    }
+  </ng-container>
+</div>
+
+@if (isLoginPopupOpen() === authPopupType.LOGIN) {
+  <mm-login></mm-login>
+}
+@if (isRegisterPopupOpen() === authPopupType.REGISTER) {
+  <mm-register></mm-register>
+}

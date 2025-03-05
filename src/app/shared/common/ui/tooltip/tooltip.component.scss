@@ -1,0 +1,50 @@
+@use "typography";
+@use "spacing";
+
+:host {
+  position: relative;
+  display: block;
+  z-index: 10;
+}
+
+.tooltip-content:hover + .tooltip,
+.tooltip-content:focus + .tooltip {
+  display: block;
+}
+
+.tooltip {
+  @include typography.font-regular-10;
+
+  position: absolute;
+  display: none;
+  width: 200px;
+  padding: spacing.$spacing-2;
+  margin-left: -#{spacing.$spacing-2};
+  color: var(--color-text);
+  background: #121416;
+  border: 2px solid #505050;
+  border-radius: spacing.$spacing-3;
+  text-align: left;
+  pointer-events: none;
+
+  &[data-position="top"] {
+    top: 0;
+    transform: translateY(-60%);
+  }
+
+  &[data-position="bottom"] {
+    bottom: 0;
+    transform: translateY(100%);
+  }
+
+  &[data-position="right"] {
+    right: 0;
+    top: 0;
+    transform: translate(100%, -25%);
+  }
+
+  &[data-position="left"] {
+    left: 0;
+    transform: translate(12px, 24px);
+  }
+}

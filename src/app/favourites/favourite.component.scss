@@ -1,0 +1,17 @@
+@use "spacing";
+
+:host {
+  display: block;
+  padding-top: 120px;
+}
+
+.favourite {
+  &__title {
+    color: var(--color-title-text);
+    text-align: center;
+  }
+
+  &__tabset {
+    margin-bottom: spacing.$spacing-10;
+  }
+}

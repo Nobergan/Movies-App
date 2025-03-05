@@ -1,0 +1,89 @@
+@use "spacing";
+@use "typography";
+
+:host {
+  padding: spacing.$spacing-7 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ui-spinner {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: translateZ(0);
+
+  &_m {
+    width: spacing.$spacing-16;
+    height: spacing.$spacing-16;
+  }
+
+  &_s {
+    width: spacing.$spacing-11;
+    height: spacing.$spacing-11;
+  }
+
+  &_xs {
+    width: spacing.$spacing-8;
+    height: spacing.$spacing-8;
+  }
+
+  &__circles {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 6px solid white;
+      border-radius: 50%;
+      animation: spinner-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: white transparent transparent transparent;
+      z-index: 1;
+
+      &:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+
+      &:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+    }
+  }
+
+  &__letter {
+    position: absolute;
+    z-index: 1;
+    width: 90%;
+    height: 90%;
+    padding: 8%;
+    top: 11%;
+  }
+
+  &__label {
+    @include typography.font-regular-14;
+
+    color: var(--color-txt-icon-1);
+    margin-top: spacing.$spacing-2;
+  }
+}
+
+@keyframes spinner-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

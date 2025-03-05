@@ -1,0 +1,95 @@
+.films-filters {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 142px 196px max-content;
+    column-gap: 24px;
+  }
+
+  &__select {
+    &.ng-select-single .ng-select-container {
+      height: 48px;
+
+      .ng-value-container {
+        padding-left: 16px;
+
+        .ng-input {
+          padding-left: 16px;
+          padding-right: 40px;
+        }
+      }
+    }
+
+    &.ng-select {
+      .ng-select-container .ng-value-container .ng-placeholder {
+        color: rgb(249, 248, 254);
+      }
+
+      .ng-select-container {
+        cursor: pointer;
+      }
+
+      .ng-arrow-wrapper {
+        width: 40px;
+        padding-right: 0;
+      }
+
+      .ng-select-opened.ng-select-bottom > .ng-select-container {
+        border-bottom-right-radius: 16px;
+        border-bottom-left-radius: 16px;
+      }
+
+      &.ng-select-opened > .ng-select-container {
+        background: rgb(18, 20, 22);
+        border-color: rgb(18, 20, 22);
+        border-bottom-right-radius: 16px;
+        border-bottom-left-radius: 16px;
+      }
+    }
+
+    .ng-dropdown-panel {
+      padding: 4px 0;
+      background: rgb(18, 20, 22);
+      border: 1px solid rgb(18, 20, 22);
+      overflow: hidden;
+
+      &.ng-select-bottom {
+        top: 54px;
+        border-radius: 16px;
+      }
+
+      .ng-option {
+        padding: 12px 16px;
+        background: rgb(18, 20, 22);
+        color: rgb(249, 248, 254);
+      }
+
+      .ng-dropdown-panel-items {
+        .ng-option.ng-option-selected,
+        .ng-option.ng-option-selected.ng-option-marked {
+          color: rgb(249, 248, 254);
+          background: rgb(18, 20, 22);
+        }
+
+        .ng-option.ng-option-marked {
+          color: rgb(249, 248, 254);
+          background: rgb(18, 20, 22);
+        }
+      }
+    }
+
+    .ng-select-container {
+      border-radius: 16px;
+      color: rgb(249, 248, 254);
+      border: 1px solid rgb(18, 20, 22);
+      background: rgb(18, 20, 22);
+
+      .ng-value-container .ng-input > input {
+        display: none;
+      }
+    }
+
+    &_genres .ng-dropdown-panel-items .ng-option {
+      text-align: left;
+    }
+  }
+}

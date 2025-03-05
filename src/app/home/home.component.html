@@ -1,0 +1,58 @@
+@let vmValue = vm();
+
+<ng-container *uiSpinner="vmValue.isLoading">
+  <div class="home">
+    <mm-hero-films [films]="vmValue.trendAllFilms"></mm-hero-films>
+    <div class="container">
+      <div class="home__widgets gradient-border">
+        <h2 class="home__slider-title" mmTitle [level]="3">{{ homeText.trendFilmsTitle }}</h2>
+        <mm-films-widget
+          [films]="vmValue.trendFilms"
+          [mediaType]="filmsType.Movie"
+          [isLoggedIn]="vmValue.isLoggedIn"
+          [favouriteFilmsIds]="vmValue.favouriteFilmsIds"
+          (clickedFavouriteButton)="toggleFavouriteFilm($event)"
+        ></mm-films-widget>
+        <h2 class="home__slider-title" mmTitle [level]="3">{{ homeText.trendTvTitle }}</h2>
+        <mm-films-widget
+          [films]="vmValue.trendTv"
+          [mediaType]="filmsType.Tv"
+          [isLoggedIn]="vmValue.isLoggedIn"
+          [favouriteFilmsIds]="vmValue.favouriteFilmsIds"
+          (clickedFavouriteButton)="toggleFavouriteFilm($event)"
+        ></mm-films-widget>
+        <h2 class="home__slider-title" mmTitle [level]="3">{{ homeText.popularFilmsTitle }}</h2>
+        <mm-films-widget
+          [films]="vmValue.popularFilms"
+          [mediaType]="filmsType.Movie"
+          [isLoggedIn]="vmValue.isLoggedIn"
+          [favouriteFilmsIds]="vmValue.favouriteFilmsIds"
+          (clickedFavouriteButton)="toggleFavouriteFilm($event, filmsType.Movie)"
+        ></mm-films-widget>
+        <h2 class="home__slider-title" mmTitle [level]="3">{{ homeText.popularTvTitle }}</h2>
+        <mm-films-widget
+          [films]="vmValue.popularTv"
+          [mediaType]="filmsType.Tv"
+          [isLoggedIn]="vmValue.isLoggedIn"
+          [favouriteFilmsIds]="vmValue.favouriteFilmsIds"
+          (clickedFavouriteButton)="toggleFavouriteFilm($event, filmsType.Tv)"
+        ></mm-films-widget>
+        <h2 class="home__slider-title" mmTitle [level]="3">{{ homeText.upcomingFilmsTitle }}</h2>
+        <mm-films-widget
+          [films]="vmValue.upcomingFilms"
+          [mediaType]="filmsType.Movie"
+          [isLoggedIn]="vmValue.isLoggedIn"
+          [favouriteFilmsIds]="vmValue.favouriteFilmsIds"
+          (clickedFavouriteButton)="toggleFavouriteFilm($event, filmsType.Movie)"
+        ></mm-films-widget>
+      </div>
+
+      <div class="home__wrapper">
+        <h3 class="home__description-title">{{ homeText.descriptionFilmsTitle }}</h3>
+        <p class="home__description-text">{{ homeText.descriptionFilmsText }}</p>
+        <h3 class="home__description-title">{{ homeText.descriptionTvTitle }}</h3>
+        <p class="home__description-text">{{ homeText.descriptionTvText }}</p>
+      </div>
+    </div>
+  </div>
+</ng-container>

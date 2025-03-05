@@ -1,0 +1,29 @@
+@let spinnerSize = size();
+@let spinnerLabel = label();
+
+<div
+  class="ui-spinner"
+  [ngClass]="{
+    'ui-spinner_m': spinnerSize === 'm',
+    'ui-spinner_s': spinnerSize === 's',
+    'ui-spinner_xs': spinnerSize === 'xs',
+  }"
+>
+  <svg class="ui-spinner__letter" width="26" height="35" viewBox="0 0 26 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M0.492158 30V0.89868H7.39333L15.0428 13.2044L22.6923 0.89868H29.5935V30H23.2328V11.001L15.0428 23.4314H14.8765L6.76973 11.1257V30H0.492158Z"
+      fill="#F80032"
+    />
+  </svg>
+
+  <div class="ui-spinner__circles">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+@if (spinnerLabel) {
+  <p class="ui-spinner__label">{{ spinnerLabel }}</p>
+}

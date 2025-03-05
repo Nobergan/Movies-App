@@ -1,0 +1,6 @@
+<div class="container">
+  <h2 class="favourite__title" mmTitle [level]="2">{{ favouriteText.title }}</h2>
+  <ui-route-tabset [tabs]="favouriteTabs" class="favourite__tabset"></ui-route-tabset>
+
+  <router-outlet></router-outlet>
+</div>

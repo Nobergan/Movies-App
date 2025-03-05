@@ -1,0 +1,25 @@
+@use "typography";
+
+.mm-title {
+  @include typography.font-family-bold;
+
+  color: var(--color-title-text);
+
+  &_h1 {
+    @include typography.font-bold-120;
+  }
+
+  &_h2 {
+    @include typography.font-bold-54;
+  }
+
+  &_h3 {
+    @include typography.font-bold-32;
+  }
+
+  &_accent {
+    & > span {
+      color: #f80032;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@let activeRoute = activeMediaRoute();
+
+<div class="footer">
+  <div class="container">
+    <div class="footer__content-wrap">
+      <a class="footer__logo" [routerLink]="['/']">
+        <img ngSrc="./assets/images/logo.png" alt="MixMovie" height="48" width="111" priority />
+      </a>
+      <div class="footer__middle-wrap">
+        <div class="footer__socials">
+          <a class="footer__socials-link" [routerLink]="['/']"
+            ><mm-icon class="footer__socials-icon" size="m" [iconName]="'facebook'"></mm-icon
+          ></a>
+          <a class="footer__socials-link" [routerLink]="['/']"
+            ><mm-icon class="footer__socials-icon" size="m" [iconName]="'telegram'"></mm-icon
+          ></a>
+          <a class="footer__socials-link" [routerLink]="['/']"
+            ><mm-icon class="footer__socials-icon" size="m" [iconName]="'instagram'"></mm-icon
+          ></a>
+        </div>
+        <ul class="footer__menu">
+          <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="footer__menu-item_active" class="footer__menu-item">
+            <a [routerLink]="['/movies', activeRoute]">{{ footerContent.menu.films }}</a>
+          </li>
+          <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="footer__menu-item_active" class="footer__menu-item">
+            <a [routerLink]="['/tv', activeRoute]">{{ footerContent.menu.series }}</a>
+          </li>
+          <li class="footer__menu-item" routerLinkActive="footer__menu-item_active">
+            @if (!isLoggedIn()) {
+              <ui-tooltip [tooltip]="footerContent.menuFavouritesTooltip">
+                <a [routerLink]="['/favourites']" class="footer__menu-item_disabled">{{ footerContent.menu.favourites }}</a>
+              </ui-tooltip>
+            } @else {
+              <a [routerLink]="['/favourites']">{{ footerContent.menu.favourites }}</a>
+            }
+          </li>
+          <li class="footer__menu-item">
+            <a [routerLink]="['/']">{{ footerContent.menu.help }}</a>
+          </li>
+        </ul>
+      </div>
+      <button mmButton mmType="secondary" size="xl" class="footer__button">
+        {{ footerContent.button }}
+      </button>
+    </div>
+    <div class="footer__rights">&#169; {{ footerContent.rights }}</div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="breadcrumbs">
+  <ol class="breadcrumbs__list">
+    <li class="breadcrumbs__list-item">
+      <a href="/">Головна</a>
+    </li>
+    <li class="breadcrumbs__list-item breadcrumbs__list-item--media" (click)="goToMedia()">
+      <span>/</span>{{ contentType }}<span>/</span>
+    </li>
+    <li class="breadcrumbs__list-item">
+      {{ title() }}
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,5 @@
+@for (tab of tabs(); track $index) {
+<a routerLinkActive="mm-tabset__tab_active" class="mm-tabset__tab" [routerLink]="tab.route" [queryParams]="getQueryParamsWithData(tab)">
+  <span>{{ tab.title }}</span>
+</a>
+}

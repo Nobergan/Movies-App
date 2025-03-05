@@ -1,0 +1,24 @@
+@let vmValue = vm();
+
+<ng-container *uiSpinner="vmValue.isLoading">
+  @if (vmValue.favouriteFilms.length) {
+    <button class="favourite__button-clean" mmButton mmType="quaternary" size="xxs" (click)="deleteFavouritesByMediaType(filmsType.Movie)">
+      <mm-icon iconName="close-red" size="m"></mm-icon>
+      <span>Видалити всі фільми</span>
+    </button>
+    <div class="favourite__list">
+      @for (film of vmValue.favouriteFilms; track $index) {
+        <mm-film-card
+          [film]="film"
+          [mediaType]="film.mediaType"
+          [favouriteFilmsIds]="vmValue.favouriteIds"
+          [isLoggedIn]="vmValue.isLoggedIn"
+          [isInFavouritesPage]="true"
+          (onAddFavouriteFilm)="toggleFavouriteFilm($event)"
+        ></mm-film-card>
+      }
+    </div>
+  } @else {
+    <ui-not-found [text]="favouriteText.notFoundFilms"></ui-not-found>
+  }
+</ng-container>

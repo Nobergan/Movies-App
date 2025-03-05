@@ -1,0 +1,78 @@
+@use "typography";
+@use "spacing";
+@use "borders";
+
+:host {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: #1b1f28;
+  }
+}
+
+.mm-tabset {
+  width: 100%;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: #1b1f28;
+  }
+
+  &__tab {
+    @include typography.font-regular-16;
+
+    display: flex;
+    position: relative;
+    padding: spacing.$spacing-2;
+    color: #80858f;
+    margin-bottom: 1px;
+    text-decoration: none;
+
+    &:not(:last-child) {
+      margin-right: spacing.$spacing-8;
+    }
+
+    &_active {
+      @include typography.font-bold-16;
+
+      color: #ffffff;
+      pointer-events: none;
+
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 3px;
+        width: 30px;
+        background: #f80032;
+        border-radius: borders.$border-radius-1;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -#{spacing.$spacing-4};
+        height: 1px;
+        width: calc(100% + #{spacing.$spacing-4 * 2});
+        background: linear-gradient(90deg, rgba(255, 36, 0, 0) 0%, #f80032 50.52%, rgba(255, 36, 0, 0) 100%);
+      }
+    }
+  }
+}

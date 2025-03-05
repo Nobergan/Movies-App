@@ -1,0 +1,11 @@
+@use "spacing";
+@use "typography";
+
+:host {
+  @include typography.font-bold-32;
+
+  padding: spacing.$spacing-7 0;
+  display: block;
+  text-align: center;
+  color: var(--color-not-found-text);
+}

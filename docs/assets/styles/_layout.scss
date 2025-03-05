@@ -1,0 +1,118 @@
+// -------------------------------------
+// Breakpoints
+// -------------------------------------
+$_breakpoints: (
+  xs: 320px,
+  sm: 375px,
+  md: 768px,
+  xl: 1280px,
+  2xl: 1921px,
+);
+
+// -------------------------------------
+// @mixin: breakpoint($size)
+// -------------------------------------
+// usage:
+// @include breakpoint(md or 450px) {
+// - styles here --
+// }
+// -------------------------------------
+@mixin breakpoint($size) {
+  @if map-has-key($_breakpoints, $size) {
+    @media (min-width: map-get($_breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+// -------------------------------------
+// @mixin: breakpoint-max($size)
+// -------------------------------------
+// usage:
+// @include breakpoint-max(md or 450px) {
+// - styles here --
+// }
+// -------------------------------------
+@mixin breakpoint-max($size) {
+  @if map-has-key($_breakpoints, $size) {
+    // The maximum value is reduced by 0.02px to work around the limitations of
+    // `min-` and `max-` prefixes and with fractional viewport sizes.
+    // See: https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+    // Use 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+    // See https://bugs.webkit.org/show_bug.cgi?id=178261
+    $_breakpoint-max-range-precision: 0.02px;
+
+    @media (max-width: map-get($_breakpoints, $size) - $_breakpoint-max-range-precision) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+$_z-indexes: (
+  modal: 900,
+  overlay: 800,
+  dropdown: 700,
+  sidebar: 650,
+  header: 600,
+  under-header: 599,
+  footer: 500,
+  hidden: -1,
+  floating: 1000,
+);
+// -------------------------------------
+// @function: z-index($layer)
+// -------------------------------------
+// usage:
+// .modal {
+//  z-index: z-index(modal);
+// }
+// -------------------------------------
+@function z-index($layer) {
+  @if not map-has-key($_z-indexes, $layer) {
+    @error 'No layer found for `#{$layer}` in $z-indexes map. Property omitted.';
+  }
+  @return map-get($_z-indexes, $layer);
+}
+
+// -------------------------------------
+// @mixin: max-min($max, $min)
+// -------------------------------------
+// usage:
+// @include max-min($max or 767px, $min or 420px) {
+// - styles here --
+// }
+// -------------------------------------
+@mixin max-min($max, $min) {
+  @if map-has-key($_breakpoints, $max) and
+    map-has-key($_breakpoints, $min)
+  {
+    @media (max-width: map-get($_breakpoints, $max)) and (min-width: map-get($_breakpoints, $min)) {
+      @content;
+    }
+  } @else if(map-has-key($_breakpoints, $max)) {
+    @media (max-width: map-get($_breakpoints, $max)) and (min-width: $min) {
+      @content;
+    }
+  } @else if(map-has-key($_breakpoints, $min)) {
+    @media (max-width: $max) and (min-width: map-get($_breakpoints, $min)) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $max) and (min-width: $min) {
+      @content;
+    }
+  }
+}
+
+// -------------------------------------
+// Custom variables
+// -------------------------------------
+$header-height: 95px;

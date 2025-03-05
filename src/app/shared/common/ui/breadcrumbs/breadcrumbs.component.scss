@@ -1,0 +1,25 @@
+.breadcrumbs {
+  margin-bottom: 42px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #ffffff;
+
+  &__list {
+    display: flex;
+    align-items: center;
+
+    &-item {
+      &--media {
+        color: #f80032;
+        cursor: pointer;
+
+        & span {
+          margin: 0 5px;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

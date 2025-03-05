@@ -1,0 +1,17 @@
+<input
+  type="text"
+  name="searchTerm"
+  [(ngModel)]="searchTerm"
+  (input)="onSearchTermsChange()"
+  [placeholder]="placeholder"
+  class="ui-search-input__control"
+/>
+<button
+  *ngIf="hasSearchButton"
+  class="ui-search-input__button"
+  mmButton
+  (click)="onButtonClick()"
+  [disabled]="searchTerm?.length <= 3"
+>
+  Пошук
+</button>

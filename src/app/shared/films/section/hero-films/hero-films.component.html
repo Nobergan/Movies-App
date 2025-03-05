@@ -1,0 +1,57 @@
+<ng-container *uiSpinner="isLoading()">
+  <div class="hero-films__carousel hero-films__carousel_films">
+    <owl-carousel-o [options]="filmsOptions" (changed)="onFilmCarouselChanged($event)" #owlFilms class="carousel">
+      @for (slide of films(); let index = $index; track index) {
+        <ng-template carouselSlide class="hero-films__carousel-item" [id]="index.toString()">
+          <img
+            [ngSrc]="'https://image.tmdb.org/t/p/original/' + slide.backdropPath"
+            [alt]="slide.title"
+            class="hero-films__carousel-img"
+            fill
+          />
+          <div class="hero-films__carousel-container container">
+            <h1 class="hero-films__carousel-title" mmTitle [level]="1">
+              {{ slide.title }}
+            </h1>
+            <div class="hero-films__carousel-wrapper">
+              <div class="hero-films__carousel-info">
+                <mm-rating class="hero-films__carousel-rating" [rating]="slide.voteAverage"></mm-rating>
+                <ul class="hero-films__carousel-info-list">
+                  <li class="hero-films__carousel-info-list-item">
+                    <mm-genres [genres]="slide.genres"></mm-genres>
+                  </li>
+                  <li class="hero-films__carousel-info-list-item">
+                    {{ slide.releaseDate | date: "yyyy" }}
+                  </li>
+                </ul>
+              </div>
+              <p class="hero-films__carousel-description">
+                {{ slide.overview }}
+              </p>
+              <a
+                mmButton
+                mmType="primary"
+                size="l"
+                class="hero-films__carousel-btn"
+                [routerLink]="['/', slide.mediaType || mediaType(), slide.filmId]"
+              >
+                Дивитись
+              </a>
+            </div>
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+  <div class="hero-films__carousel hero-films__carousel_navigation">
+    <owl-carousel-o [options]="navigationFilmsOptions" (changed)="onNavigationCarouselChanged($event)" #owlNav class="carousel">
+      @for (slide of films(); let index = $index; track index) {
+        <ng-template carouselSlide [id]="index.toString()">
+          <span (click)="onNavigationItemClick(index)">
+            <img [src]="'https://image.tmdb.org/t/p/w300/' + slide.backdropPath" [alt]="slide.title" />
+          </span>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</ng-container>

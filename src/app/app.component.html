@@ -1,0 +1,29 @@
+<ng-container *puLet="vm() as vm">
+  @if (!vm.isLoading) {
+    <div class="app">
+      <mm-header
+        [isLoggedIn]="vm.isLoggedIn"
+        [isAnonymous]="vm.isAnonymous"
+        [currentUser]="vm.currentUser"
+        [searchFilms]="vm.searchFilms"
+        [isLoadingSearchFilms]="vm.isLoadingSearchFilms"
+        [isSearchButton]="vm.isSearchButton"
+        [isBlockSearchVisible]="vm.hasSearchBlock"
+        [isButtonSearchIcon]="vm.hasBtnSearchIcon"
+        [isLoginPopupOpen]="vm.authPopupOpen"
+        [isRegisterPopupOpen]="vm.authPopupOpen"
+        [isForgotPasswordPopupOpen]="vm.authPopupOpen"
+        [isMobileMenuVisible]="vm.isMobileMenuVisible"
+        (openLoginClicked)="openAuthPopup(authPopupType.LOGIN)"
+        (openRegisterClicked)="openAuthPopup(authPopupType.REGISTER)"
+        (logoutClicked)="logout()"
+        (searchFilmsInputed)="searchFilms($event)"
+        (clickedBtnSearch)="handleSearchClicked($event)"
+      ></mm-header>
+      <main class="main">
+        <router-outlet></router-outlet>
+      </main>
+      <mm-footer [isLoggedIn]="vm.isLoggedIn"></mm-footer>
+    </div>
+  }
+</ng-container>

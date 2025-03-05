@@ -1,0 +1,87 @@
+@use "colors";
+
+:root {
+  // Text
+  --color-title-text: #{colors.$white};
+  --color-text: #{colors.$white};
+  --color-accent-text: #{colors.$red-1};
+  --color-not-found-text: #{colors.$gray-2};
+
+  // Backgrounds
+  --color-bg-1: #{colors.$dark-1};
+  --color-bg-2: #{colors.$dark-2};
+
+  // Borders
+  --border-footer: 1px solid #{colors.$gray-3};
+  --border-logo: 4px solid #{colors.$white};
+
+  // Gradients
+  --gradient-menu-item-active: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #f80032 50%, rgba(0, 0, 0, 0) 100%);
+
+  // Menu
+  // Menu(Text)
+  --menu-item-disabled: #{colors.$gray-3};
+
+  // Auth
+  // Auth(Background)
+  --color-auth-bg: linear-gradient(
+    114deg,
+    rgba(18, 20, 22, 0.5) 0%,
+    rgba(13, 37, 53, 0.5) 36.54%,
+    rgba(13, 37, 53, 0.5) 59.44%,
+    rgba(18, 20, 22, 0.5) 85.07%
+  );
+  // Auth(Account)
+  --color-auth-account-text: #{colors.$gray-1};
+  --color-auth-account-link-text: #{colors.$red-1};
+  // Auth(Gap)
+  --color-auth-gap-text: #{colors.$white};
+  --color-auth-gap-line: #{colors.$gray-1};
+  // Auth(Policy)
+  --color-auth-policy-text: #{colors.$white};
+  --color-auth-policy-link-text: #{colors.$red-1};
+  // Auth(Forgot)
+  --color-auth-forgot-text: #{colors.$white};
+
+  // Toast
+  // Toast(Text)
+  --color-toast-text: #{colors.$white};
+  // Toast(Background)
+  --color-toast-error-bg: #{colors.$dark-1};
+  --color-toast-warning-bg: #{colors.$dark-1};
+  // Toast(Border)
+  --color-toast-error-border: #{colors.$red-1};
+  --color-toast-warning-border: #{colors.$orange-1};
+
+  // Form
+  // Form(Text)
+  --color-form-title: #{colors.$white};
+  // Form(Background)
+  --color-form-bg: #{colors.$dark-1};
+
+  // Inputs
+  // Inputs(Text)
+  --color-input-text: #{colors.$gray-1};
+  // Inputs(Field)
+  --color-input-bg: transparent;
+  --color-input-border: #{colors.$gray-1};
+
+  // Buttons
+  // Button(Primary)
+  --color-button-primary-txt: #{colors.$white};
+  --color-button-primary-bg: #{colors.$red-1};
+  --color-button-primary-disabled-bg: #{colors.$red-2};
+  // Button(Secondary)
+  --color-button-secondary-txt: #{colors.$white};
+  --color-button-secondary-bg: #{transparent};
+  --color-button-secondary-border: #{colors.$gray-1};
+  --color-button-secondary-disabled-txt: #{colors.$gray-2};
+  // Button(Tertiary)
+  --color-button-tertiary-txt: #{colors.$white};
+  --color-button-tertiary-bg: #{transparent};
+  --color-button-tertiary-border: #{colors.$white};
+
+  //Rating
+  //Rating(Text)
+  --color-rating-text: #{colors.$white};
+}

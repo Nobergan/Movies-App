@@ -1,0 +1,18 @@
+@use "typography";
+
+.film-actors {
+  &__poster {
+    position: relative;
+    margin-bottom: 8px;
+    border-radius: 20px;
+    z-index: -1;
+
+    &-wrap {
+      background: rgba(5, 6, 9, 0.32);
+    }
+  }
+
+  &__name {
+    @include typography.font-bold-14;
+  }
+}

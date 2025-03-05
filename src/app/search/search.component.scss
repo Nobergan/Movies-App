@@ -1,0 +1,20 @@
+@use "spacing";
+
+:host {
+  display: block;
+  padding-top: 95px;
+}
+
+.mm-search {
+  &__container {
+    padding-top: spacing.$spacing-15;
+  }
+
+  &__title {
+    margin-bottom: spacing.$spacing-17;
+  }
+
+  &__tabset {
+    margin-top: spacing.$spacing-15;
+  }
+}

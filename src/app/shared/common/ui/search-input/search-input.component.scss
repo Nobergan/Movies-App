@@ -1,0 +1,29 @@
+@use "typography";
+@use "spacing";
+
+:host {
+  display: flex;
+}
+
+.ui-search-input {
+  &__control {
+    @include typography.font-regular-16;
+
+    width: 100%;
+    height: spacing.$spacing-11;
+    padding: spacing.$spacing-2 spacing.$spacing-5;
+    border-radius: spacing.$spacing-5;
+    color: rgb(249, 248, 254);
+    border: 1px solid rgb(18, 20, 22);
+    background: rgb(18, 20, 22);
+    outline: none;
+
+    &::placeholder {
+      color: rgb(249, 248, 254);
+    }
+  }
+
+  &__button {
+    margin-left: spacing.$spacing-5;
+  }
+}

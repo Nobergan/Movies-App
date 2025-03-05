@@ -1,0 +1,15 @@
+@let isInvalid = control.touched && control.invalid;
+
+<div [formGroup]="formGroup()">
+  <input
+    class="email-input"
+    [type]="controlTypes().Email"
+    [placeholder]="placeholder()"
+    [formControlName]="formControlName()"
+    [formControl]="control"
+  />
+</div>
+
+@if (isInvalid && showValidationMessage()) {
+  <pu-validation-message [errors]="control.errors"></pu-validation-message>
+}

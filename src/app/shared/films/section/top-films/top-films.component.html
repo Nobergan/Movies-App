@@ -1,0 +1,44 @@
+<ng-container *uiSpinner="isLoading()">
+  <div class="top-films">
+    <h2 class="top-films__title" mmTitle [level]="2">
+      {{ topFilmsContent.title.first }}
+      <span class="top-films__title-accent">{{ this.mediaType() }}</span>
+      {{ topFilmsContent.title.third }}
+    </h2>
+    <owl-carousel-o [options]="topFilmsOptions" class="top-films__carousel carousel">
+      @for (film of films(); let index = $index; track index) {
+        <ng-template carouselSlide class="top-films__carousel-item">
+          <div class="top-films__item">
+            <div class="top-films__item-left">
+              <div class="top-films__item-title-wrap">
+                <div class="top-films__item-title">
+                  {{ film.title }}
+                </div>
+                <mm-rating class="top-films__item-rating" [rating]="film.voteAverage"></mm-rating>
+              </div>
+              <div class="top-films__item-genres">
+                <mm-genres [genres]="film.genres"></mm-genres>
+              </div>
+              <div class="top-films__item-vote">
+                {{ topFilmsContent.vote.first }}
+                <span>{{ topFilmsContent.vote.accent }} {{ film.voteCount }}</span>
+                {{ topFilmsContent.vote.third }}
+              </div>
+              <a mmButton mmType="secondary" size="xl" class="top-films__item-btn" [routerLink]="['/', mediaType(), film.filmId]">
+                {{ topFilmsContent.button }}
+              </a>
+            </div>
+            <div class="top-films__item-right">
+              <img
+                class="top-films__item-img"
+                [ngSrc]="'https://image.tmdb.org/t/p/original/' + film.backdropPath"
+                [alt]="film.title"
+                fill
+              />
+            </div>
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</ng-container>

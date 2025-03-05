@@ -1,0 +1,59 @@
+@use "spacing";
+@use "typography";
+
+.home {
+  color: var(--color-text);
+
+  &__widgets {
+    position: relative;
+    padding: spacing.$spacing-15 0;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #f80032 50%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    &:after {
+      bottom: 1px;
+    }
+
+    &:before {
+      top: 1px;
+    }
+  }
+
+  &__slider-title {
+    margin-bottom: spacing.$spacing-7;
+    margin-top: spacing.$spacing-17;
+    text-transform: uppercase;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  &__wrapper {
+    padding: spacing.$spacing-10 0;
+  }
+
+  &__description-title {
+    @include typography.font-bold-24;
+
+    margin: spacing.$spacing-10 0 spacing.$spacing-7;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  &__description-text {
+    @include typography.font-regular-16;
+
+    text-indent: 30px;
+  }
+}

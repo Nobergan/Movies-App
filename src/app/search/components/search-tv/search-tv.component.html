@@ -1,0 +1,18 @@
+@let vmValue = vm();
+
+<ng-container *uiSpinner="vmValue.isLoading">
+  @if (vmValue.searchFilms?.results.length) {
+    <mm-films-list
+      [films]="vmValue.searchFilms"
+      [isLoggedIn]="vmValue.isLoggedIn"
+      [mediaType]="mediaType.Tv"
+      [favouriteFilmsIds]="vmValue.favouriteFilmsIds"
+      [isVisibleTitle]="false"
+      [currentPage]="currentPage"
+      (clickedPaginationBtn)="loadSearchTv($event, nameFilm())"
+      (clickedFavouriteButton)="toggleFavouriteFilm($event, mediaType.Tv)"
+    ></mm-films-list>
+  } @else {
+    <ui-not-found [text]="searchTexts.notFoundFilms | translate"></ui-not-found>
+  }
+</ng-container>

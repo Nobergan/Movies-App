@@ -1,0 +1,17 @@
+<ng-container *uiSpinner="isLoading()">
+  <div class="films-slider__carousel films-slider__carousel_films">
+    <owl-carousel-o [options]="filmsOptions" class="carousel">
+      @for (slide of films(); let index = $index; track index) {
+        <ng-template carouselSlide class="films-slider__carousel-item">
+          <mm-film-card
+            [film]="slide"
+            [mediaType]="mediaType()"
+            [isLoggedIn]="isLoggedIn()"
+            [favouriteFilmsIds]="favouriteFilmsIds()"
+            (onAddFavouriteFilm)="clickedFavouriteButton.emit($event)"
+          ></mm-film-card>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</ng-container>

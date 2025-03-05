@@ -1,0 +1,110 @@
+@use "spacing";
+@use "typography";
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  width: 100%;
+  cursor: pointer;
+
+  &.film-card_simplified {
+    &:not(:last-child) {
+      margin-bottom: spacing.$spacing-5;
+    }
+
+    .film-card {
+      &__icon {
+        display: none;
+      }
+
+      &__link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      &__img {
+        width: 100px;
+        height: 56px;
+        margin-bottom: 0;
+
+        &-poster {
+          border-radius: 8px;
+        }
+      }
+
+      &__title {
+        max-width: 246px;
+        margin-bottom: spacing.$spacing-1;
+      }
+
+      &__bottom {
+        margin-left: spacing.$spacing-2;
+        flex-grow: 1;
+
+        &-wrap {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+.film-card {
+  &__img {
+    position: relative;
+    margin-bottom: spacing.$spacing-5;
+    object-fit: cover;
+    height: 416px;
+    flex-shrink: 0;
+
+    &-poster {
+      border-radius: 20px;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  &__bottom {
+    &-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  &__title,
+  &__rating {
+    @include typography.font-regular-16;
+
+    margin-bottom: spacing.$spacing-2;
+    text-align: start;
+    color: #f9f8fe;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 330px;
+  }
+
+  &__info {
+    @include typography.font-regular-12;
+    text-align: left;
+    color: #505050;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 330px;
+
+    &-year {
+      margin-right: spacing.$spacing-1;
+    }
+  }
+}

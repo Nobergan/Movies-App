@@ -1,0 +1,13 @@
+@let vm = vm$ | async;
+
+<mm-films-list
+  [isLoading]="vm.isLoading"
+  [films]="vm.nowPlayingFilms"
+  [currentPage]="currentPage"
+  [isVisibleTitle]="false"
+  [isLoggedIn]="vm.isLoggedIn"
+  [mediaType]="this.mediaData().movieType"
+  [favouriteFilmsIds]="vm.favouriteFilmsIds"
+  (clickedPaginationBtn)="loadFilmsByPage($event)"
+  (clickedFavouriteButton)="toggleFavouriteFilm($event, vm.favouriteFilmsIds)"
+></mm-films-list>

@@ -1,0 +1,52 @@
+@let vmValue = vm();
+
+<div class="auth">
+  <form class="auth__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mm-icon class="auth__form-icon-close" size="m" [iconName]="'close'" (click)="closeLoginPopup()"></mm-icon>
+    <h3 class="auth__form-title">{{ signInText.formTitle }}</h3>
+    <fieldset class="auth__form-group">
+      <mm-email-input
+        class="auth__form-email"
+        [placeholder]="signInText.emailPlaceholder"
+        [formGroup]="form"
+        [formControlName]="controlName.Email"
+      ></mm-email-input>
+      <mm-password-input
+        class="auth__form-password"
+        [placeholder]="signInText.passwordPlaceholder"
+        [formGroup]="form"
+        [formControlName]="controlName.Password"
+      ></mm-password-input>
+      <button class="auth__form-btn" mmButton mmType="primary" size="l" type="submit" [disabled]="form.invalid || vmValue.isSubmitting">
+        {{ signInText.button }}
+      </button>
+    </fieldset>
+
+    <p class="auth__form-forgot">
+      <span class="auth__form-forgot-link" (click)="openAuthPopup(authPopupType.FORGOT_PASSWORD)">{{ signInText.forgotPassword }}</span>
+    </p>
+
+    <p class="auth__form-gap">{{ signInText.gap }}</p>
+
+    <button
+      #googleButton
+      class="auth__form-btn-google"
+      mmButton
+      mmType="secondary"
+      size="m"
+      type="submit"
+      [fullWidth]="true"
+      [disabled]="vmValue.isGoogleSubmitting"
+    >
+      <mm-icon class="auth__form-btn-google-icon" size="m" [iconName]="vmValue.isGoogleSubmitting ? 'google-disabled' : 'google'"></mm-icon>
+      <span>{{ signInText.googleButton }}</span>
+    </button>
+
+    <p class="auth__form-register">
+      {{ signInText.firstTime }}
+      <a class="auth__form-register-link" (click)="openAuthPopup(authPopupType.REGISTER)">
+        {{ signInText.signup }}
+      </a>
+    </p>
+  </form>
+</div>

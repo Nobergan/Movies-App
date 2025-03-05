@@ -1,0 +1,12 @@
+<div class="mm-search__container container">
+  <h2 class="mm-search__title" mmTitle [level]="2">Пошук по сайту</h2>
+  <ui-search-input
+    [placeholder]="'Пошук...'"
+    [hasSearchButton]="true"
+    [searchTerm]="nameFilm"
+    (inputedSearchFilms)="searchFilms($event)"
+  ></ui-search-input>
+  <ui-route-tabset [tabs]="searchTabs" [queryParams]="queryParams" class="mm-search__tabset"></ui-route-tabset>
+
+  <router-outlet></router-outlet>
+</div>
